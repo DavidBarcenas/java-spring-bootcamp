@@ -1,13 +1,21 @@
 package com.restapi.demo.models;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "users")
 public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", updatable = false, nullable = false)
   private Long id;
   private String name;
   private String lastname;
   private String email;
   private String phone;
+
+  @Column(name = "birth_date")
   private Date birthDate;
 
   public User() {
