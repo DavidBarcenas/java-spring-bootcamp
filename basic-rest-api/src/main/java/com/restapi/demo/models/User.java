@@ -16,7 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class User extends BaseEntity {
 
-  @JsonIgnore
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @Getter @Setter
   private String password;
 
