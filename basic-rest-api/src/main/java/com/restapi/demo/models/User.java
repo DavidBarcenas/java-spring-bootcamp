@@ -1,15 +1,16 @@
 package com.restapi.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "users")
-public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", updatable = false, nullable = false)
-  private Long id;
+public class User extends BaseEntity {
+
+  @JsonIgnore
+  private String password;
   private String name;
   private String lastname;
   private String email;
@@ -22,20 +23,12 @@ public class User {
   }
 
   public User(Long id, String name, String lastname, String email, String phone, Date birthDate) {
-    this.id = id;
+    setId(id);
     this.name = name;
     this.lastname = lastname;
     this.email = email;
     this.phone = phone;
     this.birthDate = birthDate;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getName() {
