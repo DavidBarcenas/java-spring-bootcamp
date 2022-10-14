@@ -9,17 +9,17 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
-    @Column(columnDefinition = "DATETIME", updatable = false, nullable = false)
+    @Column(columnDefinition = "timestamp", updatable = false, nullable = false)
     protected Date createdDate;
 
-    @Column(columnDefinition = "DATETIME", updatable = false, nullable = false)
+    @Column(columnDefinition = "timestamp", updatable = false, nullable = false)
     protected Date updatedDate;
 
     @PrePersist
     protected void onCreate() {
-        updatedDate = new Date();
+        updatedDate = new java.sql.Date(new Date().getTime());
         if (createdDate == null) {
-            createdDate = new Date();
+            createdDate = new java.sql.Date(new Date().getTime());
         }
     }
 

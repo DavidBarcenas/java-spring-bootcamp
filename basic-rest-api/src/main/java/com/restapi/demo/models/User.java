@@ -2,31 +2,43 @@ package com.restapi.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseEntity {
 
   @JsonIgnore
+  @Getter @Setter
   private String password;
-  private String name;
-  private String lastname;
-  private String email;
-  private String phone;
 
+  @Getter @Setter
+  private String name;
+
+  @Getter @Setter
+  private String lastname;
+  @Getter @Setter
+  private String email;
+
+  @Getter @Setter
+  private String phone;
+  @Getter @Setter
   @Column(name = "birth_date")
   private Date birthDate;
 
+  @Getter @Setter
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   @ManyToOne(fetch=FetchType.EAGER)
   @JoinColumn(name = "role_id")
   private Role role;
-
-  public User() {
-  }
 
   public User(Long id, String name, String lastname, String email, String phone, Date birthDate) {
     setId(id);
@@ -37,59 +49,16 @@ public class User extends BaseEntity {
     this.birthDate = birthDate;
   }
 
-  public String getName() {
-    return name;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    User user = (User) o;
+    return getId() != null && Objects.equals(getId(), user.getId());
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getLastname() {
-    return lastname;
-  }
-
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public Date getBirthDate() {
-    return birthDate;
-  }
-
-  public void setBirthDate(Date birthDate) {
-    this.birthDate = birthDate;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public Role getRole() {
-    return role;
-  }
-
-  public void setRole(Role role) {
-    this.role = role;
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
   }
 }
