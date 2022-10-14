@@ -1,6 +1,7 @@
 package com.restapi.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +19,11 @@ public class User extends BaseEntity {
 
   @Column(name = "birth_date")
   private Date birthDate;
+
+  @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+  @ManyToOne(fetch=FetchType.EAGER)
+  @JoinColumn(name = "role_id")
+  private Role role;
 
   public User() {
   }
@@ -69,5 +75,21 @@ public class User extends BaseEntity {
 
   public void setBirthDate(Date birthDate) {
     this.birthDate = birthDate;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
   }
 }
