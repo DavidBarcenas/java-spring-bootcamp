@@ -2,12 +2,14 @@ package org.example.entities;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
 public class AnimalEntity implements Serializable {
     @Id
+    @GeneratedValue
     private Integer id;
     private String name;
 
