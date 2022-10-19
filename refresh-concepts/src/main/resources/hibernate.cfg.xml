@@ -27,5 +27,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="org.example.entities.AnimalEntity" />
+        <mapping class="org.example.entities.Partner" />
+        <mapping class="org.example.entities.Club" />
     </session-factory>
 </hibernate-configuration>
