@@ -31,5 +31,7 @@
         <mapping class="org.example.entities.Club" />
         <mapping class="org.example.manytoone.Person" />
         <mapping class="org.example.manytoone.Phone" />
+        <mapping class="org.example.entities.User" />
+        <mapping class="org.example.entities.Post" />
     </session-factory>
 </hibernate-configuration>
