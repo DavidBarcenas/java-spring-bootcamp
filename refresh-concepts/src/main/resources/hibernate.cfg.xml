@@ -29,5 +29,7 @@
         <mapping class="org.example.entities.AnimalEntity" />
         <mapping class="org.example.entities.Partner" />
         <mapping class="org.example.entities.Club" />
+        <mapping class="org.example.manytoone.Person" />
+        <mapping class="org.example.manytoone.Phone" />
     </session-factory>
 </hibernate-configuration>
