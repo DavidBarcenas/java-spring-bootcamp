@@ -2,36 +2,32 @@ package com.spring.university.backenduniversity.persistence.entity;
 
 import com.spring.university.backenduniversity.persistence.enums.Board;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class ClassRoom implements Serializable {
-    private Integer id;
+@Entity
+@Table(name = "class_rooms")
+public class ClassRoom extends BaseEntity implements Serializable {
+    @Column(name = "room_number", nullable = false)
     private Integer roomNumber;
     private String measures;
     private Integer desks;
+    @Enumerated(EnumType.STRING)
     private Board board;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @ManyToOne(optional = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(name = "building_id", foreignKey = @ForeignKey(name = "FK_BUILDING_ID"))
+    private Building building;
 
     public ClassRoom() {
     }
 
     public ClassRoom(Integer id, Integer roomNumber, String measures, Integer desks, Board board) {
-        this.id = id;
+        this.setId(id);
         this.roomNumber = roomNumber;
         this.measures = measures;
         this.desks = desks;
         this.board = board;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getRoomNumber() {
@@ -66,26 +62,18 @@ public class ClassRoom implements Serializable {
         this.board = board;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     @Override
     public String toString() {
         return "ClassRoom{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", roomNumber=" + roomNumber +
                 ", measures='" + measures + '\'' +
                 ", desks=" + desks +
@@ -100,11 +88,11 @@ public class ClassRoom implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClassRoom classRoom = (ClassRoom) o;
-        return id.equals(classRoom.id) && roomNumber.equals(classRoom.roomNumber);
+        return this.getId().equals(classRoom.getId()) && roomNumber.equals(classRoom.roomNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roomNumber);
+        return Objects.hash(this.getId(), roomNumber);
     }
 }

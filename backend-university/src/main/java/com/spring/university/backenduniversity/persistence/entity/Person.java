@@ -4,32 +4,21 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public abstract class Person implements Serializable {
-    private Integer id;
+public abstract class Person extends BaseEntity implements Serializable {
     private String name;
     private String lastName;
     private String idDocument;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private Address address;
 
     public Person() {
     }
 
     public Person(Integer id, String name, String lastName, String idDocument, Address address) {
-        this.id = id;
+        this.setId(id);
         this.name = name;
         this.lastName = lastName;
         this.idDocument = idDocument;
         this.address = address;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -67,7 +56,7 @@ public abstract class Person implements Serializable {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", idDocument='" + idDocument + '\'' +
@@ -82,11 +71,11 @@ public abstract class Person implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id.equals(person.id) && idDocument.equals(person.idDocument);
+        return this.getId().equals(person.getId()) && idDocument.equals(person.idDocument);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idDocument);
+        return Objects.hash(this.getId(), idDocument);
     }
 }

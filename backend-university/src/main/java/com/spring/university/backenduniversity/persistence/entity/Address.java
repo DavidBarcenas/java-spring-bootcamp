@@ -1,9 +1,13 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+@Embeddable
 public class Address implements Serializable {
     private String street;
+    @Column(name = "house_number")
     private String houseNumber;
     private String zip;
     private String department;

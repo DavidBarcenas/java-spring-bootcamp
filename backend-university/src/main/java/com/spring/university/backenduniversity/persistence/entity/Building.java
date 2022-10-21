@@ -1,41 +1,38 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
-public class Building implements Serializable {
-    private Integer id;
-    private Double mts2;
+@Entity
+@Table(name = "buildings")
+public class Building extends BaseEntity implements Serializable {
+    private Double measures;
+    @Column(unique = true, nullable = false)
     private String name;
+    @Embedded
     private Address address;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
+    private Set<ClassRoom> classRooms;
 
     public Building() {
     }
 
     public Building(Integer id, Double mts2, String name, Address address) {
-        this.id = id;
-        this.mts2 = mts2;
+        this.setId(id);
+        this.measures = mts2;
         this.name = name;
         this.address = address;
     }
 
-    public Integer getId() {
-        return id;
+    public Double getMeasures() {
+        return measures;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getMts2() {
-        return mts2;
-    }
-
-    public void setMts2(Double mts2) {
-        this.mts2 = mts2;
+    public void setMeasures(Double measures) {
+        this.measures = measures;
     }
 
     public String getName() {
@@ -54,27 +51,19 @@ public class Building implements Serializable {
         this.address = address;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Set<ClassRoom> getClassRooms() {
+        return classRooms;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setClassRooms(Set<ClassRoom> classRooms) {
+        this.classRooms = classRooms;
     }
 
     @Override
     public String toString() {
         return "Building{" +
-                "id=" + id +
-                ", mts2=" + mts2 +
+                "id=" + this.getId() +
+                ", mts2=" + measures +
                 ", name='" + name + '\'' +
                 ", address=" + address +
                 ", createdAt=" + createdAt +
@@ -87,11 +76,11 @@ public class Building implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Building building = (Building) o;
-        return id.equals(building.id) && name.equals(building.name);
+        return this.getId().equals(building.getId()) && name.equals(building.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(this.getId(), name);
     }
 }

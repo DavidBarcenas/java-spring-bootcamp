@@ -1,34 +1,32 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Career implements Serializable {
-    private Integer id;
+@Entity
+@Table(name = "careers")
+public class Career extends BaseEntity implements Serializable {
+    @Column(nullable = false, unique = true, length = 80)
     private String name;
+    @Column(name = "total_subjects")
     private Integer totalSubjects;
+
+    @Column(name = "total_years")
     private Integer totalYears;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     public Career() {
     }
 
     public Career(Integer id, String name, Integer totalSubjects, Integer totalYears) {
-        this.id = id;
+        this.setId(id);
         this.name = name;
         this.totalSubjects = totalSubjects;
         this.totalYears = totalYears;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -54,26 +52,10 @@ public class Career implements Serializable {
         this.totalYears = totalYears;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String toString() {
         return "Career{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 ", totalSubjects=" + totalSubjects +
                 ", totalYears=" + totalYears +
@@ -87,11 +69,11 @@ public class Career implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Career career = (Career) o;
-        return id.equals(career.id) && name.equals(career.name);
+        return this.getId().equals(career.getId()) && name.equals(career.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(this.getId(), name);
     }
 }
