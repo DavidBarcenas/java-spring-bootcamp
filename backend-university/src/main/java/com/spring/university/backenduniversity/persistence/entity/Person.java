@@ -1,13 +1,23 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "people")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person extends BaseEntity implements Serializable {
+    @Column(nullable = false, length = 60)
     private String name;
+
+    @Column(name = "last_name", nullable = false, length = 60)
     private String lastName;
+
+    @Column(name = "id_document", unique = true, nullable = false, length = 10)
     private String idDocument;
+
+    @Embedded
     private Address address;
 
     public Person() {

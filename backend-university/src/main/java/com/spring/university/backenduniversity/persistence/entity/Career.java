@@ -1,10 +1,9 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "careers")
@@ -17,6 +16,12 @@ public class Career extends BaseEntity implements Serializable {
     @Column(name = "total_years")
     private Integer totalYears;
 
+    @OneToMany(mappedBy = "career", fetch = FetchType.LAZY)
+    private Set<Student> students;
+
+    @ManyToMany(mappedBy = "careers", fetch = FetchType.LAZY)
+    private Set<Teacher> teachers;
+
     public Career() {
     }
 
@@ -26,7 +31,6 @@ public class Career extends BaseEntity implements Serializable {
         this.totalSubjects = totalSubjects;
         this.totalYears = totalYears;
     }
-
 
     public String getName() {
         return name;
@@ -50,6 +54,22 @@ public class Career extends BaseEntity implements Serializable {
 
     public void setTotalYears(Integer totalYears) {
         this.totalYears = totalYears;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
