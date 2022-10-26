@@ -65,7 +65,7 @@ public abstract class User extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "User {" +
+        return "User{" +
                 "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +

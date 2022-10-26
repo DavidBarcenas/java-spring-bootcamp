@@ -33,9 +33,9 @@ public class BackendUniversityApplication {
 			/*Address address = new Address("Calle 2", "345", "9876", "", "", "Mexico");
 			User student = new Student(null, "Angelica", "Juarez", "3456juyik", address);
 			User save = service.save(student);
-			System.out.println(save.toString());*/
+			System.out.println(save.toString());
 			List<User> students = (List<User>) service.findAll();
-			students.forEach(System.out::println);
+			students.forEach(System.out::println);*/
 		};
 	}
 }
