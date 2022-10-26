@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "students")
-@PrimaryKeyJoinColumn(name = "person_id")
-public class Student extends Person {
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Student extends User {
     @ManyToOne(optional = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "career_id")
     private Career career;

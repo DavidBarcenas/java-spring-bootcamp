@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "employees")
-@PrimaryKeyJoinColumn(name = "person_id")
-public class Employee extends Person {
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Employee extends User {
     private BigDecimal salary;
 
     @Column(name = "employee_type")

@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "people")
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Person extends BaseEntity implements Serializable {
+public abstract class User extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 60)
     private String name;
 
@@ -20,10 +20,10 @@ public abstract class Person extends BaseEntity implements Serializable {
     @Embedded
     private Address address;
 
-    public Person() {
+    public User() {
     }
 
-    public Person(Integer id, String name, String lastName, String idDocument, Address address) {
+    public User(Integer id, String name, String lastName, String idDocument, Address address) {
         this.setId(id);
         this.name = name;
         this.lastName = lastName;
@@ -65,7 +65,7 @@ public abstract class Person extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "User {" +
                 "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -80,8 +80,8 @@ public abstract class Person extends BaseEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return this.getId().equals(person.getId()) && idDocument.equals(person.idDocument);
+        User user = (User) o;
+        return this.getId().equals(user.getId()) && idDocument.equals(user.idDocument);
     }
 
     @Override

@@ -6,8 +6,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "teachers")
-@PrimaryKeyJoinColumn(name = "person_id")
-public class Teacher extends Person {
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Teacher extends User {
     private BigDecimal salary;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})

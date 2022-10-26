@@ -1,8 +1,8 @@
 package com.spring.university.backenduniversity.dao.implementation;
 
 import com.spring.university.backenduniversity.dao.StudentDAO;
-import com.spring.university.backenduniversity.persistence.entity.Person;
-import com.spring.university.backenduniversity.persistence.repository.PersonRepository;
+import com.spring.university.backenduniversity.persistence.entity.User;
+import com.spring.university.backenduniversity.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,27 +12,27 @@ import java.util.Optional;
 @Service
 public class StudentDAOImpl implements StudentDAO {
     @Qualifier("studentRepository")
-    private final PersonRepository repository;
+    private final UserRepository repository;
 
-    public StudentDAOImpl(PersonRepository repository) {
+    public StudentDAOImpl(UserRepository repository) {
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Optional<Person> findById(Integer id) {
+    public Optional<User> findById(Integer id) {
         return repository.findById(id);
     }
 
     @Transactional
     @Override
-    public Person save(Person person) {
-        return repository.save(person);
+    public User save(User user) {
+        return repository.save(user);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Iterable<Person> findAll() {
+    public Iterable<User> findAll() {
         return repository.findAll();
     }
 

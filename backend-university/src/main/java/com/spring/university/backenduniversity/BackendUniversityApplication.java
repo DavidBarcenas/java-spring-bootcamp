@@ -2,12 +2,14 @@ package com.spring.university.backenduniversity;
 
 import com.spring.university.backenduniversity.dao.StudentDAO;
 import com.spring.university.backenduniversity.persistence.entity.Address;
-import com.spring.university.backenduniversity.persistence.entity.Person;
+import com.spring.university.backenduniversity.persistence.entity.User;
 import com.spring.university.backenduniversity.persistence.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class BackendUniversityApplication {
@@ -28,10 +30,12 @@ public class BackendUniversityApplication {
 	@Bean
 	public CommandLineRunner runner() {
 		return args -> {
-			Address address = new Address("Calle 1", "123", "1623", "23", "2", "Mexico");
-			Person student = new Student(null, "David", "Barcenas", "asdf1234", address);
-			Person save = service.save(student);
-			System.out.println(save.toString());
+			/*Address address = new Address("Calle 2", "345", "9876", "", "", "Mexico");
+			User student = new Student(null, "Angelica", "Juarez", "3456juyik", address);
+			User save = service.save(student);
+			System.out.println(save.toString());*/
+			List<User> students = (List<User>) service.findAll();
+			students.forEach(System.out::println);
 		};
 	}
 }
