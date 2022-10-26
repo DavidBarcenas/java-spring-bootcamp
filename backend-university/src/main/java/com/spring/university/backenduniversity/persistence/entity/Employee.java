@@ -1,7 +1,5 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
-import com.spring.university.backenduniversity.persistence.enums.EmployeeType;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 

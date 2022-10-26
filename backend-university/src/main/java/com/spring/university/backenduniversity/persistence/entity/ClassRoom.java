@@ -1,7 +1,5 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
-import com.spring.university.backenduniversity.persistence.enums.Board;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
