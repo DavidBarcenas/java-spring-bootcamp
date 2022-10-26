@@ -15,8 +15,9 @@ public class CareerCommands implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Career engSystems = new Career(null, "Engineering systems", 20, 5);
+        /*Career engSystems = new Career(null, "Engineering systems", 20, 5);
         Career save = careerService.save(engSystems);
-        System.out.println(save.toString());
+        System.out.println(save.toString());*/
+
     }
 }
