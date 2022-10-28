@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface FlightRepository extends PagingAndSortingRepository<Flight, Long> {
+public interface FlightRepository extends PagingAndSortingRepository<Flight, Long>, DeleteByOriginRepository {
     List<Flight> findByOrigin(String origin);
 
     List<Flight> findByOriginAndDestination(String origin, String destination);
