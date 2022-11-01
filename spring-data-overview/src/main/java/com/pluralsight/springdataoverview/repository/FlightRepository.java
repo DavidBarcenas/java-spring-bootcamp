@@ -9,12 +9,9 @@ import java.util.List;
 
 public interface FlightRepository extends PagingAndSortingRepository<Flight, Long>, DeleteByOriginRepository {
     List<Flight> findByOrigin(String origin);
-
     List<Flight> findByOriginAndDestination(String origin, String destination);
-
     List<Flight> findByOriginIn(String ...origin);
-
     List<Flight> findByOriginIgnoreCase(String origin);
-
     Page<Flight> findByOrigin(String origin, Pageable pageRequest);
+    List<Flight> findByOriginNotLike(String origin);
 }

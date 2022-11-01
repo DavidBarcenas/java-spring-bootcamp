@@ -93,6 +93,25 @@ public class DerivedQueryTests {
                 .isEqualTo(flight);
     }
 
+    @Test
+    public void shouldFindFlightsDoNotOriginMexico() {
+        final Flight flight1 = createFlight("London", "Paris");
+        final Flight flight2 = createFlight("Mexico", "Italy");
+        final Flight flight3 = createFlight("Mexico", "New York");
+
+        flightRepository.save(flight1);
+        flightRepository.save(flight2);
+        flightRepository.save(flight3);
+
+        final List<Flight> noFlightsFromMexico = flightRepository.findByOriginNotLike("Mexico");
+
+        assertThat(noFlightsFromMexico)
+                .hasSize(1)
+                .first()
+                .usingRecursiveComparison()
+                .isEqualTo(flight1);
+    }
+
     private Flight createFlight(String origin, String destination) {
         final Flight flight = new Flight();
         flight.setOrigin(origin);
