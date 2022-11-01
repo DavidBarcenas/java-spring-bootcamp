@@ -21,12 +21,25 @@ public class CareerCommands implements CommandLineRunner {
         Career save = careerService.save(engSystems);
         System.out.println(save.toString());*/
 
+        Career career = null;
         Optional<Career> oCareer = careerService.findById(1);
         if (oCareer.isPresent()) {
-            Career career = oCareer.get();
+            career = oCareer.get();
             System.out.println(career.toString());
         } else {
-            System.out.println("Career nto found");
+            System.out.println("Career not found");
         }
+
+        assert career != null;
+        career.setTotalSubjects(50);
+        career.setTotalYears(6);
+
+        careerService.save(career);
+
+        System.out.println(careerService.findById(1).orElse(new Career()).toString());
+
+        careerService.deleteById(1);
+
+        System.out.println(careerService.findById(1).orElse(new Career()).toString());
     }
 }
