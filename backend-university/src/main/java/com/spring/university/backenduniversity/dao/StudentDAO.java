@@ -1,5 +1,7 @@
 package com.spring.university.backenduniversity.dao;
 
-public interface StudentDAO extends UserDAO {
+import com.spring.university.backenduniversity.persistence.entity.User;
 
+public interface StudentDAO extends UserDAO {
+    Iterable<User> findByCareer(String careerName);
 }
