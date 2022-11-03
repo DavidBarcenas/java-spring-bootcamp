@@ -14,8 +14,8 @@ public class UserDAOImpl extends DAOImpl<User, UserRepository> implements UserDA
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<User> findByNameAndLastname(String name, String lastname) {
-        return repository.findByNameAndLastname(name, lastname);
+    public Optional<User> findByNameAndLastName(String name, String lastname) {
+        return repository.findByNameAndLastName(name, lastname);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class UserDAOImpl extends DAOImpl<User, UserRepository> implements UserDA
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<User> findByLastname(String lastname) {
-        return repository.findByLastname(lastname);
+    public Iterable<User> findByLastName(String lastname) {
+        return repository.findByLastName(lastname);
     }
 }

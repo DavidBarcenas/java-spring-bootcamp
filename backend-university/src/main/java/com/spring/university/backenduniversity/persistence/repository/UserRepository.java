@@ -9,9 +9,9 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    Optional<User> findByNameAndLastname(String name, String lastname);
+    Optional<User> findByNameAndLastName(String name, String lastname);
 
     Optional<User> findByIdDocument(String idDocument);
 
-    Iterable<User> findByLastname(String lastname);
+    Iterable<User> findByLastName(String lastname);
 }

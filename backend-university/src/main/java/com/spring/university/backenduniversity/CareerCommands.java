@@ -17,29 +17,18 @@ public class CareerCommands implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*Career engSystems = new Career(null, "Engineering systems", 20, 5);
-        Career save = careerService.save(engSystems);
-        System.out.println(save.toString());*/
+        Career systemsEng = new Career(null, "Systems Engineering", 60, 5);
+        Career foodEng = new Career(null, "Food Engineering", 40, 3);
+        Career industryEng = new Career(null, "Industry Engineering", 30, 6);
+        Career electronicEng = new Career(null, "Electronic Engineering", 80, 8);
+        Career travel = new Career(null, "Travel", 20, 2);
+        Career Yoga = new Career(null, "Yoga", 10, 1);
 
-        Career career = null;
-        Optional<Career> oCareer = careerService.findById(1);
-        if (oCareer.isPresent()) {
-            career = oCareer.get();
-            System.out.println(career.toString());
-        } else {
-            System.out.println("Career not found");
-        }
-
-        assert career != null;
-        career.setTotalSubjects(50);
-        career.setTotalYears(6);
-
-        careerService.save(career);
-
-        System.out.println(careerService.findById(1).orElse(new Career()).toString());
-
-        careerService.deleteById(1);
-
-        System.out.println(careerService.findById(1).orElse(new Career()).toString());
+        careerService.save(systemsEng);
+        careerService.save(foodEng);
+        careerService.save(industryEng);
+        careerService.save(electronicEng);
+        careerService.save(travel);
+        careerService.save(Yoga);
     }
 }
