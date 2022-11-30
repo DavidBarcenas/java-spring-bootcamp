@@ -16,6 +16,14 @@ public class Student extends User {
         super(id, name, lastName, idDocument, address);
     }
 
+    public Career getCareer() {
+        return career;
+    }
+
+    public void setCareer(Career career) {
+        this.career = career;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Student{}";

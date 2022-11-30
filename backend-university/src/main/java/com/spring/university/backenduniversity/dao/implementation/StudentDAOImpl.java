@@ -15,7 +15,7 @@ public class StudentDAOImpl extends UserDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Iterable<User> findByName(String name) {
-        return ((StudentRepository)repository).findByName(name);
+    public Iterable<User> findByCareerName(String careerName) {
+        return ((StudentRepository)repository).findByCareerName(careerName);
     }
 }
