@@ -4,6 +4,7 @@ import com.spring.university.backenduniversity.dao.EmployeeDAO;
 import com.spring.university.backenduniversity.persistence.entity.Address;
 import com.spring.university.backenduniversity.persistence.entity.Employee;
 import com.spring.university.backenduniversity.persistence.entity.EmployeeType;
+import com.spring.university.backenduniversity.persistence.entity.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +20,11 @@ public class EmployeeCommands implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Employee employee = new Employee(null, "Juan", "Perez", "dfresdw4",
+        /*Employee employee = new Employee(null, "Juan", "Perez", "dfresdw4",
                 new Address("Calle 5", "998", "54321", null, null, "México"),
                 new BigDecimal(26000), EmployeeType.ADMINISTRATIVE);
-        employeeService.save(employee);
+        employeeService.save(employee);*/
+        Iterable<User> employees = employeeService.findEmployeeByType(EmployeeType.ADMINISTRATIVE);
+        employees.forEach(System.out::println);
     }
 }
