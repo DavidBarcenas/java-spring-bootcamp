@@ -54,9 +54,10 @@ public class CareerCommands implements CommandLineRunner {
         System.out.println(student2.get());
 
         List<User> students = (List<User>) studentService.findByLastName("Juarez");
-        students.forEach(System.out::println);*/
+        students.forEach(System.out::println);
 
         Iterable<Career> careers = careerService.findCareersByTeacherNameAndLastname("Heriberto", "Cruz");
         careers.forEach(System.out::println);
+        */
     }
 }
