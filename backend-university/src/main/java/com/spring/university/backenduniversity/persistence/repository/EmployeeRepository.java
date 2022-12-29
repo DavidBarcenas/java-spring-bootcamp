@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("employeeRepository")
 public interface EmployeeRepository extends UserRepository {
-    @Query("select u from User u join fetch u.employeeType e where e.employee_type = ?1")
+    @Query("select u from User u where u.employeeType = ?1")
     Iterable<User> findEmployeeByType(EmployeeType employeeType);
 }
