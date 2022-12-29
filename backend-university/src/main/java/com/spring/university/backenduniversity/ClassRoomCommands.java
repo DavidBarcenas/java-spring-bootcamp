@@ -22,10 +22,10 @@ public class ClassRoomCommands implements CommandLineRunner {
         ClassRoom myClassRoom4 = new ClassRoom(null, 4, "60x60", 35, Board.BLACKBOARD);
         ClassRoom myClassRoom5 = new ClassRoom(null, 5, "70x70", 55, Board.WHITEBOARD);
 
-        this.classRoomService.save(myClassRoom);
+        /*this.classRoomService.save(myClassRoom);
         this.classRoomService.save(myClassRoom2);
         this.classRoomService.save(myClassRoom3);
         this.classRoomService.save(myClassRoom4);
-        this.classRoomService.save(myClassRoom5);
+        this.classRoomService.save(myClassRoom5);*/
     }
 }
