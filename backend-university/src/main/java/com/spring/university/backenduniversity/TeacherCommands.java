@@ -52,9 +52,9 @@ public class TeacherCommands implements CommandLineRunner {
             ((Teacher) teacher1).setCareers(listOfCareers);
             teacherService.save(teacher1);
         }
-
+        */
 
         Iterable<User> teachers = teacherService.findTeachersByCareer("Systems Engineering");
-        teachers.forEach(System.out::println);*/
+        teachers.forEach(System.out::println);
     }
 }

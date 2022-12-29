@@ -23,8 +23,8 @@ public class EmployeeCommands implements CommandLineRunner {
         /*Employee employee = new Employee(null, "Juan", "Perez", "dfresdw4",
                 new Address("Calle 5", "998", "54321", null, null, "México"),
                 new BigDecimal(26000), EmployeeType.ADMINISTRATIVE);
-        employeeService.save(employee);
+        employeeService.save(employee);*/
         Iterable<User> employees = employeeService.findEmployeeByType(EmployeeType.ADMINISTRATIVE);
-        employees.forEach(System.out::println);*/
+        employees.forEach(System.out::println);
     }
 }
