@@ -30,4 +30,9 @@ public class CareerDAOImpl extends DAOImpl<Career, CareerRepository> implements 
     public Iterable<Career> findByTotalYearsAfter(Integer years) {
         return repository.findByTotalYearsAfter(years);
     }
+
+    @Override
+    public Iterable<Career> findCareersByTeacherNameAndLastname(String name, String lastname) {
+        return repository.findCareersByTeacherNameAndLastname(name, lastname);
+    }
 }

@@ -6,4 +6,6 @@ public interface CareerDAO extends DAO<Career> {
     Iterable<Career> findByNameContains(String careerName);
     Iterable<Career> findByNameContainsIgnoreCase(String careerName);
     Iterable<Career> findByTotalYearsAfter(Integer years);
+
+    Iterable<Career> findCareersByTeacherNameAndLastname(String name, String lastname);
 }
