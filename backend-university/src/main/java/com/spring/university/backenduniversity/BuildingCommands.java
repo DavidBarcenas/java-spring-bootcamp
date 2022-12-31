@@ -16,7 +16,7 @@ public class BuildingCommands implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Building building1 = new Building(null, 100.0, "Building 1",
+        /*Building building1 = new Building(null, 100.0, "Building 1",
                 new Address("Zocalo", "276", "98765", null, "2", "Ciudad de México")
         );
         Building building2 = new Building(null, 150.0, "Building 2",
@@ -37,5 +37,7 @@ public class BuildingCommands implements CommandLineRunner {
         this.buildingService.save(building3);
         this.buildingService.save(building4);
         this.buildingService.save(building5);
+
+     */
     }
 }
