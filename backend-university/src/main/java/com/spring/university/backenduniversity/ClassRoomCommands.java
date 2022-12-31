@@ -28,8 +28,9 @@ public class ClassRoomCommands implements CommandLineRunner {
         this.classRoomService.save(myClassRoom2);
         this.classRoomService.save(myClassRoom3);
         this.classRoomService.save(myClassRoom4);
-        this.classRoomService.save(myClassRoom5);*/
+        this.classRoomService.save(myClassRoom5);
         Optional<ClassRoom> room = this.classRoomService.findByRoomNumber(2);
         room.ifPresent(System.out::println);
+        */
     }
 }

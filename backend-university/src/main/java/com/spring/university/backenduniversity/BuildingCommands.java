@@ -37,7 +37,8 @@ public class BuildingCommands implements CommandLineRunner {
         this.buildingService.save(building3);
         this.buildingService.save(building4);
         this.buildingService.save(building5);
-
      */
+        Iterable<Building> buildings = this.buildingService.findByName("Building");
+        buildings.forEach(System.out::println);
     }
 }

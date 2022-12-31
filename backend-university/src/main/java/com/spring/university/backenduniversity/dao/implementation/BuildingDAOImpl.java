@@ -10,4 +10,14 @@ public class BuildingDAOImpl extends DAOImpl<Building, BuildingRepository> imple
     public BuildingDAOImpl(BuildingRepository repository) {
         super(repository);
     }
+
+    @Override
+    public Iterable<Building> findByLocation(String location) {
+        return this.repository.findByLocation(location);
+    }
+
+    @Override
+    public Iterable<Building> findByName(String name) {
+        return this.repository.findByName(name);
+    }
 }
