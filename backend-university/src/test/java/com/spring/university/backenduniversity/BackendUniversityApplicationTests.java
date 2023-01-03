@@ -8,6 +8,7 @@ class BackendUniversityApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
