@@ -3,7 +3,6 @@ package com.spring.university.backenduniversity.persistence.repository;
 import com.spring.university.backenduniversity.persistence.entity.Career;
 import com.spring.university.backenduniversity.persistence.entity.Student;
 import com.spring.university.backenduniversity.persistence.entity.User;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
