@@ -1,7 +1,6 @@
 package com.spring.university.backenduniversity.dao.implementation;
 
 import com.spring.university.backenduniversity.dao.CareerDAO;
-import com.spring.university.backenduniversity.data.DummyData;
 import com.spring.university.backenduniversity.persistence.entity.Career;
 import com.spring.university.backenduniversity.persistence.repository.CareerRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import static com.spring.university.backenduniversity.data.DummyData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class CareerDAOImplTest {
