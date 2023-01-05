@@ -1,6 +1,5 @@
 package com.spring.university.backenduniversity.persistence.repository;
 
-import com.spring.university.backenduniversity.data.DummyData;
 import com.spring.university.backenduniversity.persistence.entity.Employee;
 import com.spring.university.backenduniversity.persistence.entity.Teacher;
 import com.spring.university.backenduniversity.persistence.entity.User;
@@ -15,7 +14,6 @@ import java.util.Optional;
 
 import static com.spring.university.backenduniversity.data.DummyData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class UserRepositoryTest {
@@ -52,7 +50,7 @@ class UserRepositoryTest {
 
     @Test
     void findByLastName() {
-        Iterable<User> newStudent = studentRepository.saveAll(Arrays.asList(studen1(), studen2(), studen3()));
+        studentRepository.saveAll(Arrays.asList(student1(), student2(), student3()));
 
         String lastname = "Conde";
         List<User> students = (List<User>) this.studentRepository.findByLastName(lastname);

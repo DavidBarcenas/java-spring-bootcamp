@@ -33,15 +33,15 @@ public class DummyData {
                 new BigDecimal(40000));
     }
 
-    public static User studen1() {
+    public static User student1() {
         return new Student(null, "Jhon", "Conde", "45gt65ht", new Address());
     }
 
-    public static User studen2() {
+    public static User student2() {
         return new Student(null, "Karla", "Ramirez", "loper4p5", new Address());
     }
 
-    public static User studen3() {
+    public static User student3() {
         return new Student(null, "Carlos", "Conde", "133lko6i", new Address());
     }
 }
