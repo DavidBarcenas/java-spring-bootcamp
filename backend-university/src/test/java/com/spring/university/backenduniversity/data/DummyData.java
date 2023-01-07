@@ -44,4 +44,14 @@ public class DummyData {
     public static User student3() {
         return new Student(null, "Carlos", "Conde", "133lko6i", new Address());
     }
+
+    public static Building building1() {
+        return new Building(null, 100.0, "Reforma", new Address(null, null, null, null, null, "Mexico"));
+    }
+    public static Building building2() {
+        return new Building(null, 150.0, "Centro", new Address(null, null, null, null, null, "Mexico"));
+    }
+    public static Building building3() {
+        return new Building(null, 200.0, "Cadiz", new Address(null, null, null, null, null, "Monterrey"));
+    }
 }
