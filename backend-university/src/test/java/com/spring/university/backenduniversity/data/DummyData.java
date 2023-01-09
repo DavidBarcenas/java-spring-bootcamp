@@ -54,4 +54,16 @@ public class DummyData {
     public static Building building3() {
         return new Building(null, 200.0, "Cadiz", new Address(null, null, null, null, null, "Monterrey"));
     }
+
+    public static ClassRoom classRoom1() {
+        return new ClassRoom(null, 1, "60x60", 30, Board.BLACKBOARD);
+    }
+
+    public static ClassRoom classRoom2() {
+        return new ClassRoom(null, 2, "60x60", 35, Board.WHITEBOARD);
+    }
+
+    public static ClassRoom classRoom3() {
+        return new ClassRoom(null, 3, "60x60", 40, Board.BLACKBOARD);
+    }
 }
