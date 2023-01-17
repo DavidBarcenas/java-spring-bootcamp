@@ -1,5 +1,6 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -18,12 +19,13 @@ public class Career extends BaseEntity implements Serializable {
     @Column(name = "total_years")
     private Integer totalYears;
 
-    @JsonIgnoreProperties({"career"})
+
     @OneToMany(mappedBy = "career", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Student> students;
 
-    @JsonIgnoreProperties({"careers"})
     @ManyToMany(mappedBy = "careers", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Teacher> teachers;
 
     public Career() {
