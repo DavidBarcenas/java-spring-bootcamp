@@ -15,16 +15,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/students")
-public class StudentController {
-    private final UserDAO studentDAO;
+public class StudentController extends UserController {
     private final CareerDAO careerDAO;
 
     @Autowired
     public StudentController(@Qualifier("studentDAOImpl") UserDAO studentDAO, CareerDAO careerDAO) {
-        this.studentDAO = studentDAO;
+        super(studentDAO);
+        entityName = "Student";
         this.careerDAO = careerDAO;
     }
 
+    /*
     @GetMapping
     public List<User> getAll() {
         List<User> students = (List<User>) studentDAO.findAll();
@@ -48,10 +49,17 @@ public class StudentController {
         return studentDAO.save(student);
     }
 
+
+
+    @DeleteMapping
+    public void delete(@PathVariable Integer id) {
+        studentDAO.deleteById(id);
+    }*/
+
     @PutMapping("/{id}")
     public User update(@PathVariable Integer id, @RequestBody User student) {
         User newStudent = null;
-        Optional<User> prevStudent = studentDAO.findById(id);
+        Optional<User> prevStudent = service.findById(id);
         if(prevStudent.isEmpty()) {
             throw new BadRequestException(String.format("The student with id %d does not exist", id));
         }
@@ -59,18 +67,13 @@ public class StudentController {
         newStudent.setName(student.getName());
         newStudent.setLastName(student.getLastName());
         newStudent.setAddress(student.getAddress());
-        return studentDAO.save(newStudent);
-    }
-
-    @DeleteMapping
-    public void delete(@PathVariable Integer id) {
-        studentDAO.deleteById(id);
+        return service.save(newStudent);
     }
 
 
     @PutMapping("/{idStudent}/career/{idCareer}")
     public User assignCareer(@PathVariable Integer idStudent, @PathVariable Integer idCareer) {
-        Optional<User> student = studentDAO.findById(idStudent);
+        Optional<User> student = service.findById(idStudent);
         if(student.isEmpty()) {
             throw new BadRequestException(String.format("The student with id %d does not exist", idStudent));
         }
@@ -83,6 +86,6 @@ public class StudentController {
         User updateStudent = student.get();
 
         ((Student)updateStudent).setCareer(career.get());
-        return studentDAO.save(updateStudent);
+        return service.save(updateStudent);
     }
 }
