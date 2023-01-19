@@ -38,7 +38,31 @@ public class CareerController {
     }
 
     @PostMapping
-    public Career createCareer(@RequestBody Career career) {
+    public Career create(@RequestBody Career career) {
+        if(career.getTotalYears() < 0) {
+            throw new BadRequestException("The number of years cannot be negative");
+        }
+        if(career.getTotalSubjects() < 0) {
+            throw new BadRequestException("The amount of subjects cannot be negative");
+        }
         return careerDAO.save(career);
+    }
+
+    @PutMapping("/{id}")
+    public Career update(@PathVariable Integer id, @RequestBody Career career) {
+        Career newCareer = null;
+        Optional<Career> prevCareer = careerDAO.findById(id);
+        if(prevCareer.isEmpty()) {
+            throw new BadRequestException(String.format("The career with id %d does not exist", id));
+        }
+        newCareer = prevCareer.get();
+        newCareer.setTotalYears(career.getTotalYears());
+        newCareer.setTotalSubjects(career.getTotalSubjects());
+        return careerDAO.save(newCareer);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        careerDAO.deleteById(id);
     }
 }
