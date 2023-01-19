@@ -1,10 +1,12 @@
 package com.spring.university.backenduniversity.controller;
 
 import com.spring.university.backenduniversity.dao.DAO;
-import com.spring.university.backenduniversity.exception.BadRequestException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GenericController <E, S extends DAO<E>> {
     protected final S service;
@@ -15,11 +17,19 @@ public class GenericController <E, S extends DAO<E>> {
     }
 
     @GetMapping
-    public List<E> getAll() {
+    public ResponseEntity<?> getAll() {
+        Map<String, Object> message = new HashMap<>();
         List<E> list = (List<E>) service.findAll();
+
         if(list.isEmpty()){
-            throw new BadRequestException("No results found");
+            message.put("success", Boolean.FALSE);
+            message.put("message", "No records found");
+            return ResponseEntity.badRequest().body(message);
         }
-        return list;
+
+        message.put("success", Boolean.TRUE);
+        message.put("data", list);
+
+        return ResponseEntity.ok(message);
     }
 }
