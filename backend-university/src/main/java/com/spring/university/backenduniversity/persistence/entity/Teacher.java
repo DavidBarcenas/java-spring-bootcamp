@@ -1,5 +1,7 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -16,6 +18,7 @@ public class Teacher extends User {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name ="career_id")
     )
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "teachers"})
     private Set<Career> careers;
 
     public Teacher() {}

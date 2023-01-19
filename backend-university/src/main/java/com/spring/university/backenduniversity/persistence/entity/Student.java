@@ -1,5 +1,7 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ import javax.persistence.*;
 public class Student extends User {
     @ManyToOne(optional = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "career_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "students"})
     private Career career;
 
     public Student() {}
