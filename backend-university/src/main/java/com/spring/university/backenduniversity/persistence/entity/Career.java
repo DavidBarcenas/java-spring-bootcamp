@@ -3,10 +3,6 @@ package com.spring.university.backenduniversity.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -14,17 +10,12 @@ import java.util.Set;
 @Entity
 @Table(name = "careers")
 public class Career extends BaseEntity implements Serializable {
-    @NotNull
-    @NotEmpty
-    @Size(min = 0, max = 80)
     @Column(nullable = false, unique = true, length = 80)
     private String name;
 
-    @Positive(message = "The value cannot be negative")
     @Column(name = "total_subjects")
     private Integer totalSubjects;
 
-    @Positive(message = "The value cannot be negative")
     @Column(name = "total_years")
     private Integer totalYears;
 

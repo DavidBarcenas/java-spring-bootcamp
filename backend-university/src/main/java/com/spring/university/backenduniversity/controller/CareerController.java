@@ -1,7 +1,7 @@
 package com.spring.university.backenduniversity.controller;
 
 import com.spring.university.backenduniversity.dao.CareerDAO;
-import com.spring.university.backenduniversity.mapper.CareerMapper;
+import com.spring.university.backenduniversity.persistence.mapper.CareerMapper;
 import com.spring.university.backenduniversity.persistence.dto.CareerDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
 import org.springframework.beans.factory.annotation.Autowired;

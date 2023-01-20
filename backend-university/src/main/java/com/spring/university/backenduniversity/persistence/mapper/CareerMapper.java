@@ -1,4 +1,4 @@
-package com.spring.university.backenduniversity.mapper;
+package com.spring.university.backenduniversity.persistence.mapper;
 
 import com.spring.university.backenduniversity.persistence.dto.CareerDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
