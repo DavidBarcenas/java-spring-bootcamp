@@ -4,6 +4,7 @@ import com.spring.university.backenduniversity.dao.CareerDAO;
 import com.spring.university.backenduniversity.mapper.CareerMapper;
 import com.spring.university.backenduniversity.persistence.dto.CareerDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/careers")
 public class CareerController extends GenericController<Career, CareerDAO> {
+    @Autowired
+    private CareerMapper mapper;
+
     public CareerController(CareerDAO careerDAO) {
         super(careerDAO);
         entityName = "Career";
@@ -31,7 +35,7 @@ public class CareerController extends GenericController<Career, CareerDAO> {
             return ResponseEntity.badRequest().body(message);
         }
 
-        List<CareerDTO> careersDTO = careers.stream().map(CareerMapper::mapCareer).toList();
+        List<CareerDTO> careersDTO = careers.stream().map(mapper::mapCareer).toList();
 
         message.put("success", Boolean.TRUE);
         message.put("data", careersDTO);
