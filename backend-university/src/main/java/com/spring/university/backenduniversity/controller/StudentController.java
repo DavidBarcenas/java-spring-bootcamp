@@ -2,14 +2,19 @@ package com.spring.university.backenduniversity.controller;
 
 import com.spring.university.backenduniversity.dao.CareerDAO;
 import com.spring.university.backenduniversity.dao.UserDAO;
+import com.spring.university.backenduniversity.persistence.dto.StudentDTO;
+import com.spring.university.backenduniversity.persistence.dto.UserDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
 import com.spring.university.backenduniversity.persistence.entity.Student;
 import com.spring.university.backenduniversity.persistence.entity.User;
+import com.spring.university.backenduniversity.persistence.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +22,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/students")
 public class StudentController extends UserController {
+    @Autowired
+    private StudentMapper mapper;
     private final CareerDAO careerDAO;
 
     @Autowired
@@ -24,6 +31,24 @@ public class StudentController extends UserController {
         super(studentDAO);
         entityName = "Student";
         this.careerDAO = careerDAO;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Integer id) {
+        Map<String, Object> message = new HashMap<>();
+        Optional<User> student = service.findById(id);
+
+        if(student.isEmpty()) {
+            message.put("success", Boolean.FALSE);
+            message.put("message", String.format("The student with id %d does not exist", id));
+            return ResponseEntity.badRequest().body(message);
+        }
+
+        UserDTO dto = mapper.mapStudentDTO((Student) student.get());
+
+        message.put("success", Boolean.TRUE);
+        message.put("data", dto);
+        return ResponseEntity.ok(message);
     }
 
     @PutMapping("/{id}")
@@ -70,6 +95,25 @@ public class StudentController extends UserController {
 
         message.put("success", Boolean.TRUE);
         message.put("data", service.save(updateStudent));
+        return ResponseEntity.ok(message);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> create(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
+        Map<String, Object> message = new HashMap<>();
+
+        if (result.hasErrors()) {
+            Map<String, Object> validations = new HashMap<>();
+            result.getFieldErrors().forEach(error -> validations.put(error.getField(), error.getDefaultMessage()));
+
+            message.put("success", Boolean.FALSE);
+            message.put("errors", validations);
+
+            return ResponseEntity.badRequest().body(message);
+        }
+
+        message.put("success", Boolean.TRUE);
+        message.put("data", service.save(mapper.mapStudent((StudentDTO) userDTO)));
         return ResponseEntity.ok(message);
     }
 }

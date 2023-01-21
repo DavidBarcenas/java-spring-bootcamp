@@ -1,8 +1,5 @@
 package com.spring.university.backenduniversity.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,12 +7,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Student.class, name = "student"),
-        @JsonSubTypes.Type(value = Teacher.class, name = "teacher"),
-        @JsonSubTypes.Type(value = Employee.class, name = "employee"),
-})
 public abstract class User extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 60)
     private String name;
