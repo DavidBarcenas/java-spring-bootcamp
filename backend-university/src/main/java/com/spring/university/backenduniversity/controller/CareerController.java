@@ -4,6 +4,8 @@ import com.spring.university.backenduniversity.dao.CareerDAO;
 import com.spring.university.backenduniversity.persistence.mapper.CareerMapper;
 import com.spring.university.backenduniversity.persistence.dto.CareerDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/careers")
 public class CareerController extends GenericController<Career, CareerDAO> {
+
+    Logger logger = LoggerFactory.getLogger(CareerController.class);
     @Autowired
     private CareerMapper mapper;
 
@@ -39,6 +43,8 @@ public class CareerController extends GenericController<Career, CareerDAO> {
 
         message.put("success", Boolean.TRUE);
         message.put("data", careersDTO);
+
+        logger.info("/all");
 
         return ResponseEntity.ok(message);
     }
