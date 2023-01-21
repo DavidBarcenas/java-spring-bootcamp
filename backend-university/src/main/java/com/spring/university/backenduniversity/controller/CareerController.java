@@ -4,6 +4,8 @@ import com.spring.university.backenduniversity.dao.CareerDAO;
 import com.spring.university.backenduniversity.persistence.mapper.CareerMapper;
 import com.spring.university.backenduniversity.persistence.dto.CareerDTO;
 import com.spring.university.backenduniversity.persistence.entity.Career;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/careers")
+@Api(value = "actions to manage the careers", tags="Career actions")
 public class CareerController extends GenericController<Career, CareerDAO> {
 
     Logger logger = LoggerFactory.getLogger(CareerController.class);
@@ -29,6 +32,7 @@ public class CareerController extends GenericController<Career, CareerDAO> {
     }
 
     @GetMapping("/all")
+    @ApiOperation(value = "Consult all the careers")
     public ResponseEntity<?> getAllDTO() {
         Map<String, Object> message = new HashMap<>();
         List<Career> careers = (List<Career>) service.findAll();
@@ -50,6 +54,7 @@ public class CareerController extends GenericController<Career, CareerDAO> {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "Update a career")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Career career) {
         Map<String, Object> message = new HashMap<>();
         Career newCareer = null;
