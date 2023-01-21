@@ -22,13 +22,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/students")
 public class StudentController extends UserController {
-    @Autowired
-    private StudentMapper mapper;
     private final CareerDAO careerDAO;
 
     @Autowired
-    public StudentController(@Qualifier("studentDAOImpl") UserDAO studentDAO, CareerDAO careerDAO) {
-        super(studentDAO);
+    public StudentController(@Qualifier("studentDAOImpl") UserDAO studentDAO, CareerDAO careerDAO, StudentMapper mapper) {
+        super(studentDAO, mapper);
         entityName = "Student";
         this.careerDAO = careerDAO;
     }
@@ -44,7 +42,7 @@ public class StudentController extends UserController {
             return ResponseEntity.badRequest().body(message);
         }
 
-        UserDTO dto = mapper.mapStudentDTO((Student) student.get());
+        UserDTO dto = studentMapper.mapStudentDTO((Student) student.get());
 
         message.put("success", Boolean.TRUE);
         message.put("data", dto);
@@ -113,7 +111,7 @@ public class StudentController extends UserController {
         }
 
         message.put("success", Boolean.TRUE);
-        message.put("data", service.save(mapper.mapStudent((StudentDTO) userDTO)));
+        message.put("data", super.createUser(studentMapper.mapStudent((StudentDTO) userDTO)));
         return ResponseEntity.ok(message);
     }
 }
