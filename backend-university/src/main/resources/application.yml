@@ -1,0 +1,17 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: backend-university
+  datasource:
+    username: monster
+    password: secret
+    url: "jdbc:postgresql://localhost:5432/university"
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  servlet.context-path: /api/v1/university
